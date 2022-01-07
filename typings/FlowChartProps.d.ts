@@ -1,5 +1,5 @@
 /**
- * This file was generated from Cascader.xml
+ * This file was generated from FlowChart.xml
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix Widgets Team
  */
@@ -18,11 +18,11 @@ interface CommonProps {
     style: string;
 }
 
-export interface CascaderContainerProps extends CommonProps {
+export interface FlowChartContainerProps extends CommonProps {
     myString: string;
 }
 
-export interface CascaderPreviewProps {
+export interface FlowChartPreviewProps {
     class: string;
     style: string;
     styleObject: CSSProperties;
