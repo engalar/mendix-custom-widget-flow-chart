@@ -1,4 +1,4 @@
-import { createElement, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 
 
 import { FlowChartContainerProps } from "../typings/FlowChartProps";
@@ -8,6 +8,7 @@ import "./ui/FlowChart.scss";
 import { Observer } from "mobx-react";
 import { Store } from "./store";
 import { FlowChartComponent } from "./components/FlowChartComponent";
+import { useUnmount } from "ahooks";
 
 const parseStyle = (style = ""): { [key: string]: string } => {
     try {
@@ -26,9 +27,17 @@ const parseStyle = (style = ""): { [key: string]: string } => {
 
 
 export default function FlowChart(props: FlowChartContainerProps) {
-    console.log(props);
+    const [store] = useState(new Store(props));
 
-    const [store] = useState(new Store());
+    useEffect(() => {
+        store._mxOption = props;
+        return () => {
+        }
+    }, [props])
+
+    useUnmount(() => {
+        store.dispose();
+    })
 
     return <Observer>{() => (
         <div className="mxcn-resize-wrapper" style={parseStyle(props.style)}>

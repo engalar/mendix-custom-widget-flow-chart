@@ -1,16 +1,84 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="com.mendix.widget.custom.flowchart.FlowChart" needsEntityContext="false" offlineCapable="true" supportedPlatform="Web"
+<widget id="com.mendix.widget.custom.flowchart.FlowChart" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
     xmlns="http://www.mendix.com/widget/1.0/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>FlowChart</name>
     <description>FlowChart for Mendix</description>
     <icon></icon>
     <properties>
-        <propertyGroup caption="通用">
-            <property key="myString" type="string" required="false" multiline="false">
-                <caption>String</caption>
-                <description></description>
-            </property>
+        <propertyGroup caption="数据源">
+            <propertyGroup caption="背景图片">
+                <property key="bg" type="entity" required="true" isPath="optional" pathType="reference">
+                    <caption>背景图片</caption>
+                    <description>实体必须继承System.Image</description>
+                </property>
+                <property key="bgFilter" type="entityConstraint" required="false" entityProperty="bg">
+                    <caption>过滤条件</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="高亮点">
+                <property key="roi" type="entity" required="true" pathType="referenceSet" isPath="optional">
+                    <caption>高亮点</caption>
+                    <description></description>
+                </property>
+                <property key="roiFilter" type="entityConstraint" required="false" entityProperty="roi">
+                    <caption>过滤条件</caption>
+                    <description></description>
+                </property>
+                <property key="x" type="attribute" entityProperty="roi" required="true" isPath="no">
+                    <caption>x坐标</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+                <property key="y" type="attribute" entityProperty="roi" required="true" isPath="no">
+                    <caption>y坐标</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="外观">
+            <propertyGroup caption="背景图">
+                <property key="xOfBg" type="attribute" entityProperty="bg" required="true">
+                    <caption>x坐标</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+                <property key="yOfBg" type="attribute" entityProperty="bg" required="true">
+                    <caption>y坐标</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+                <property key="widthOfBg" type="attribute" entityProperty="bg" required="true">
+                    <caption>宽度</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+                <property key="heightOfBg" type="attribute" entityProperty="bg" required="true">
+                    <caption>高度</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="高亮图标">
+                <property key="hlIcon" type="image" required="true">
+                    <caption>高亮图标</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>

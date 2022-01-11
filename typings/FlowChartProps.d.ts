@@ -15,20 +15,32 @@ interface CommonProps {
     friendlyId?: string;
     mxform: mxui.lib.form._FormBase;
     mxObject?: mendix.lib.MxObject;
+    readOnly: boolean;
     style: string;
 }
 
-export interface FlowChartContainerProps extends CommonProps {
-    myString: string;
+interface _W {
+    bg: string; // "MyFirstModule.BackgroundImage"
+    bgFilter: string; // "[MyFirstModule.BackgroundImage_WorkflowDummy/MyFirstModule.WorkflowDummy/MyFirstModule.WorkflowInstanceDummy_WorkflowDummy='[%CurrentObject%]']"
+    roi: string; // "MyFirstModule.Entity"
+    roiFilter: string; // "[MyFirstModule.Entity_UserTaskDummy/MyFirstModule.UserTaskDummy/MyFirstModule.UserTaskDummy_WorkflowInstanceDummy='[%CurrentObject%]']"
+    x: string;
+    y: string;
+    xOfBg: string;
+    yOfBg: string;
+    widthOfBg: string;
+    heightOfBg: string;
+    hlIcon: string;
 }
 
-export interface FlowChartPreviewProps {
+export interface FlowChartContainerProps extends CommonProps, _W {}
+
+export interface FlowChartPreviewProps extends _W {
     class: string;
     style: string;
     styleObject: CSSProperties;
-    myString: string;
 }
 
 export interface VisibilityMap {
-    myString: boolean;
+    [P in _W]: boolean;
 }
